@@ -20,17 +20,17 @@ namespace parameters {
 const uint64_t CRYPTONOTE_MAX_BLOCK_NUMBER                   = 999999999;
 const size_t   CRYPTONOTE_MAX_BLOCK_BLOB_SIZE                = 999999999;
 const size_t   CRYPTONOTE_MAX_TX_SIZE                        = 1000000000;
-const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX       = 0x; // addresses start with "XRY1"
+const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX       = 0410; 
 const size_t   CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW          = 6;
 const uint64_t CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT            = 60 * 60 * 2;
 const uint64_t CRYPTONOTE_DEFAULT_TX_SPENDABLE_AGE           = 10;
 
 const size_t   BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW             = 30;
 
-const uint64_t MONEY_SUPPLY                                  = UINT64_C(10000000010400000000);
+const uint64_t MONEY_SUPPLY                                  = UINT64_C(10000000010400000000); //100b
 
 const size_t   CRYPTONOTE_REWARD_BLOCKS_WINDOW               = 100;
-const size_t   CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE     = 100000; //size of block (bytes) after which reward for block calculated using block size
+const size_t   CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE     = 200000; //size of block (bytes) after which reward for block calculated using block size
 const size_t   CRYPTONOTE_COINBASE_BLOB_RESERVED_SIZE        = 600;
 const size_t   CRYPTONOTE_DISPLAY_DECIMAL_POINT              = 8;
 // COIN - number of smallest units in one coin
@@ -47,16 +47,16 @@ const size_t   DIFFICULTY_LAG                                = 1;
 static_assert(2 * DIFFICULTY_CUT <= DIFFICULTY_WINDOW - 2, "Bad DIFFICULTY_WINDOW or DIFFICULTY_CUT");
 
 const uint64_t DEPOSIT_MIN_AMOUNT                            = 1 * COIN;
-const uint32_t DEPOSIT_MIN_TERM                              = 1; //~1 month
-const uint32_t DEPOSIT_MAX_TERM                              = 1 * 12 * 360; //~1 year
+const uint32_t DEPOSIT_MIN_TERM                              = 1; //4min
+const uint32_t DEPOSIT_MAX_TERM                              = 1 * 30 * 360; // 1 month
 const uint64_t DEPOSIT_MIN_TOTAL_RATE_FACTOR                 = 0; //rate is constant
-const uint64_t DEPOSIT_MAX_TOTAL_RATE                        = 10; //percentage rate for DEPOSIT_MAX_TERM
+const uint64_t DEPOSIT_MAX_TOTAL_RATE                        = 5; //percentage rate for DEPOSIT_MAX_TERM
 static_assert(DEPOSIT_MIN_TERM > 0, "Bad DEPOSIT_MIN_TERM");
 static_assert(DEPOSIT_MIN_TERM <= DEPOSIT_MAX_TERM, "Bad DEPOSIT_MAX_TERM");
 static_assert(DEPOSIT_MIN_TERM * DEPOSIT_MAX_TOTAL_RATE > DEPOSIT_MIN_TOTAL_RATE_FACTOR, "Bad DEPOSIT_MIN_TOTAL_RATE_FACTOR or DEPOSIT_MAX_TOTAL_RATE");
 
-const uint64_t MULTIPLIER_FACTOR                             = 250; //early depositor multiplier
-const uint32_t END_MULTIPLIER_BLOCK                          = 3600; //block at which the multiplier ceases to be applied
+const uint64_t MULTIPLIER_FACTOR                             = 2; //early depositor multiplier
+const uint32_t END_MULTIPLIER_BLOCK                          = 360; //block at which the multiplier ceases to be applied
 
 const size_t   MAX_BLOCK_SIZE_INITIAL                        = CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE * 10;
 const uint64_t MAX_BLOCK_SIZE_GROWTH_SPEED_NUMERATOR         = 100 * 1024;
@@ -89,15 +89,16 @@ const char     CRYPTONOTE_BLOCKCHAIN_INDICES_FILENAME[]      = "blockchainindice
 const char     MINER_CONFIG_FILE_NAME[]                      = "miner_conf.json";
 } // parameters
 
-const uint64_t START_BLOCK_REWARD                            = (UINT64_C(5000) * parameters::POINT);
-const uint64_t ICO_BLOCK_REWARD	                             = (UINT64_C(0) * parameters::COIN); // 18.4 billion ICO
-const uint64_t MAX_BLOCK_REWARD                              = (UINT64_C(1000) * parameters::COIN);
-const uint64_t REWARD_INCREASE_INTERVAL                      = (UINT64_C(264000));
+const uint64_t START_BLOCK_REWARD                            = (UINT64_C(100000) * parameters::COIN); // 1,000 coins starting block reward
+const uint64_t MIN_BLOCK_REWARD                              = (UINT64_C(50000) * parameters::COIN); // 500 coins min. block reward
+const uint64_t REWARD_INCREASE_INTERVAL                      = (UINT64_C(999999999)); //disabled
+const uint64_t ICO_BLOCK_REWARD	                             = (UINT64_C(0) * parameters::COIN); //disabled
+const uint64_t MAX_BLOCK_REWARD                              = (UINT64_C(150000) * parameters::COIN);
 
 const char     CRYPTONOTE_NAME[]                             = "xencoin";
-const char     GENESIS_COINBASE_TX_HEX[]                     = "";
+const char     GENESIS_COINBASE_TX_HEX[]                     = "010601ff000180d0dbc3f402029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd08807121017a1248bdcebafbe2fa0729d90b197c14a7abcb83cceb569f2575aaac6962e2a9";
 const uint32_t GENESIS_NONCE                                 = 70;
-const uint64_t GENESIS_TIMESTAMP                             = 1496764095;
+const uint64_t GENESIS_TIMESTAMP                             = 1516325748;
 
 const uint8_t  TRANSACTION_VERSION_1                         =  1;
 const uint8_t  TRANSACTION_VERSION_2                         =  2;
